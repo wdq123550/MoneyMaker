@@ -1,5 +1,4 @@
 {
-  "originHash" : "1612a87da835535f09aa86a12edbea16a8b0201ff9bfaa8d3736a0a488b3b827",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -26,15 +25,6 @@
       "state" : {
         "revision" : "78d7cd35f1d90ff74fd82e486f2cbe4b24be8cf9",
         "version" : "2.2.0"
-      }
-    },
-    {
-      "identity" : "klcpopupspm",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/bogdanmatasaru/KLCPopupSPM",
-      "state" : {
-        "branch" : "main",
-        "revision" : "e561d23df5b65ed4a4a3743daa3af6c24d155a11"
       }
     },
     {
@@ -137,5 +127,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }

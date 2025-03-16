@@ -12,7 +12,6 @@ import UIKit
 @_exported import JGProgressHUD
 @_exported import SVProgressHUD
 @_exported import SnapKit
-@_exported import KLCPopup
 @_exported import MJRefresh
 @_exported import WCDBSwift
 @_exported import RSKGrowingTextView
