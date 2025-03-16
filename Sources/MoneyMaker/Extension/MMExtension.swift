@@ -31,9 +31,9 @@ public extension UIView {
     
     //圆角设置集合
     struct LayerSet {
-        var cornerRadius: CGFloat?
-        var borderWidth: CGFloat?
-        var borderColor: UIColor?
+        public var cornerRadius: CGFloat?
+        public var borderWidth: CGFloat?
+        public var borderColor: UIColor?
     }
     
     /// 渐变方向
