@@ -34,6 +34,12 @@ public extension UIView {
         public var cornerRadius: CGFloat?
         public var borderWidth: CGFloat?
         public var borderColor: UIColor?
+        
+        public init(cornerRadius: CGFloat? = nil, borderWidth: CGFloat? = nil, borderColor: UIColor? = nil) {
+            self.cornerRadius = cornerRadius
+            self.borderWidth = borderWidth
+            self.borderColor = borderColor
+        }
     }
     
     /// 渐变方向
