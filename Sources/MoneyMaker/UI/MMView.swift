@@ -10,21 +10,21 @@ import Combine
 
 public class MMView: UIView{
     
-    var cancellables = Set<AnyCancellable>()
+    public var cancellables = Set<AnyCancellable>()
     
-    enum Attribute {
+    public enum Attribute {
         case bgColor(UIColor)
         case layerSet(LayerSet)
     }
     
-    init(_ attributes: Attribute...){
+    public init(_ attributes: Attribute...){
         super.init(frame: .zero)
         for attribute in attributes {
             self.addAttribute(attribute)
         }
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
@@ -32,7 +32,7 @@ public class MMView: UIView{
         fatalError("init(coder:) has not been implemented")
     }
     
-    @discardableResult func addAttribute(_ attribute: Attribute) -> MMView {
+    @discardableResult private func addAttribute(_ attribute: Attribute) -> MMView {
         switch attribute {
         case .bgColor(let bgColor):
             self.backgroundColor = bgColor

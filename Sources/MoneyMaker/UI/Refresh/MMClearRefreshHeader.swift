@@ -8,9 +8,9 @@
 import UIKit
 import MJRefresh
 
-class MMClearRefreshHeader: MJRefreshNormalHeader {
+public class MMClearRefreshHeader: MJRefreshNormalHeader {
 
-    init(refreshingClosure: @escaping MJRefreshComponentAction) {
+    public init(refreshingClosure: @escaping MJRefreshComponentAction) {
         super.init(frame: .zero)
         self.refreshingBlock = refreshingClosure
         self.stateLabel?.isHidden = true

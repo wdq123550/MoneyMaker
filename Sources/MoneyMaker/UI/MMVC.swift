@@ -10,7 +10,7 @@ import Combine
 
 public class MMVC: UIViewController {
     
-    var cancellables = Set<AnyCancellable>()
+    public var cancellables = Set<AnyCancellable>()
     
     public override func viewDidLoad() {
         super.viewDidLoad()

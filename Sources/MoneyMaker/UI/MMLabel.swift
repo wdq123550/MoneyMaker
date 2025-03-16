@@ -10,7 +10,7 @@ import UIKit
 public class MMLabel: UILabel {
     
     
-    init(_ attributes: Attribute...){
+    public init(_ attributes: Attribute...){
         super.init(frame: .zero)
         for attribute in attributes {
             self.addAttribute(attribute)
@@ -21,7 +21,7 @@ public class MMLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    enum Attribute {
+    public enum Attribute {
         case text(String)
         case textColor(UIColor)
         case font(UIFont)
@@ -33,7 +33,7 @@ public class MMLabel: UILabel {
         case attributeText(NSAttributedString)
     }
     
-    @discardableResult func addAttribute(_ attribute: Attribute) -> MMLabel {
+    @discardableResult private func addAttribute(_ attribute: Attribute) -> MMLabel {
         switch attribute {
         case.text(let text):
             self.text = text

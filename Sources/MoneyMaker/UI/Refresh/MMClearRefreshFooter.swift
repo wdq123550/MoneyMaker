@@ -8,9 +8,9 @@
 import UIKit
 import MJRefresh
 
-class MMClearRefreshFooter: MJRefreshAutoFooter {
+public class MMClearRefreshFooter: MJRefreshAutoFooter {
 
-    init(refreshingClosure: @escaping MJRefreshComponentAction) {
+    public init(refreshingClosure: @escaping MJRefreshComponentAction) {
         super.init(frame: .zero)
         self.refreshingBlock = refreshingClosure
     }

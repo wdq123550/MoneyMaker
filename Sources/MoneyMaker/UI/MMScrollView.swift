@@ -9,7 +9,7 @@ import UIKit
 
 public class MMScrollView: UIScrollView {
     
-    init(_ attributes: Attribute...){
+    public init(_ attributes: Attribute...){
         super.init(frame: .zero)
         for attribute in attributes {
             self.addAttribute(attribute)
@@ -20,7 +20,7 @@ public class MMScrollView: UIScrollView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    enum Attribute {
+    public enum Attribute {
         case contentSize(CGSize)
         case delegate(AnyObject)
         case pagingEnabled(Bool)
@@ -30,7 +30,7 @@ public class MMScrollView: UIScrollView {
         case layerSet(LayerSet)
     }
     
-    @discardableResult func addAttribute(_ attribute: Attribute) -> MMScrollView {
+    @discardableResult private func addAttribute(_ attribute: Attribute) -> MMScrollView {
         switch attribute {
         case.contentSize(let contentSize):
             self.contentSize = contentSize

@@ -9,7 +9,7 @@ import UIKit
 
 public class MMImageView: UIImageView {
 
-    init(_ attributes: Attribute...){
+    public init(_ attributes: Attribute...){
         super.init(frame: .zero)
         for attribute in attributes {
             self.addAttribute(attribute)
@@ -20,14 +20,14 @@ public class MMImageView: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    enum Attribute {
+    public enum Attribute {
         case contentMode(UIView.ContentMode)
         case image(UIImage)
         case layerSet(LayerSet)
         case tapGestureRecognizer( (_ tapGestureRecognizer: UITapGestureRecognizer) -> () )
     }
     
-    @discardableResult func addAttribute(_ attribute: Attribute) -> MMImageView {
+    @discardableResult private func addAttribute(_ attribute: Attribute) -> MMImageView {
         switch attribute {
         case .contentMode(let contentMode):
             self.contentMode = contentMode

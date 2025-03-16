@@ -8,7 +8,7 @@ import UIKit
 
 public class MMCTextField: UITextField {
     
-    enum Attribute {
+    public enum Attribute {
         case font(UIFont)
         case text(String)
         case textColor(UIColor)
@@ -29,7 +29,7 @@ public class MMCTextField: UITextField {
     private var defaultTextFieldDeleteImage: UIImage?
     private var defaultRightViewMargin: CGFloat = 10.0
     
-    init(_ attributes: Attribute...){
+    public init(_ attributes: Attribute...){
         super.init(frame: .zero)
         for attribute in attributes {
             self.addAttribute(attribute)
@@ -59,7 +59,7 @@ public class MMCTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @discardableResult func addAttribute(_ attribute: Attribute) -> MMCTextField {
+    @discardableResult private func addAttribute(_ attribute: Attribute) -> MMCTextField {
         switch attribute {
         case.text(let text):
             self.text = text

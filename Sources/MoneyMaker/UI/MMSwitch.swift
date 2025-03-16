@@ -9,7 +9,7 @@ import UIKit
 
 public class MMSwitch: UISwitch {
     
-    init(_ attributes: Attribute...){
+    public init(_ attributes: Attribute...){
         super.init(frame: .zero)
         for attribute in attributes {
             self.addAttribute(attribute)
@@ -20,14 +20,14 @@ public class MMSwitch: UISwitch {
         fatalError("init(coder:) has not been implemented")
     }
     
-    enum Attribute {
+    public enum Attribute {
         case onTintColor(UIColor)
         case thumbTintColor(UIColor)
         case onImage(UIImage)
         case offImage(UIImage)
     }
     
-    @discardableResult func addAttribute(_ attribute: Attribute) -> MMSwitch {
+    @discardableResult private func addAttribute(_ attribute: Attribute) -> MMSwitch {
         switch attribute {
         case.onTintColor(let onTintColor):
             self.onTintColor = onTintColor

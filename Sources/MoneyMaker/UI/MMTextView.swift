@@ -9,7 +9,7 @@ import RSKGrowingTextView
 
 public class MMTextView: RSKGrowingTextView {
     
-    enum Attribute {
+    public enum Attribute {
         case font(UIFont)
         case text(String)
         case textColor(UIColor)
@@ -24,7 +24,7 @@ public class MMTextView: RSKGrowingTextView {
     
     public static var deleteImage: UIImage = UIImage(named: "textFieldDelete")!
     
-    init(_ attributes: Attribute...){
+    public init(_ attributes: Attribute...){
         super.init(frame: .zero, textContainer: nil)
         for attribute in attributes {
             self.addAttribute(attribute)
@@ -35,7 +35,7 @@ public class MMTextView: RSKGrowingTextView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @discardableResult func addAttribute(_ attribute: Attribute) -> MMTextView {
+    @discardableResult private func addAttribute(_ attribute: Attribute) -> MMTextView {
         switch attribute {
         case.text(let text):
             self.text = text

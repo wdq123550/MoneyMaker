@@ -12,7 +12,7 @@ public class MMFullScreenBackNavigationVC: UINavigationController, UIGestureReco
     private let backImage: UIImage
     
     //子类必须重写此方法
-    required init(rootViewController: UIViewController, backImage: UIImage) {
+    public required init(rootViewController: UIViewController, backImage: UIImage) {
         self.backImage = backImage
         super.init(rootViewController: rootViewController)
     }

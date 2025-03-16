@@ -10,12 +10,12 @@ import WCDBSwift
 
 public final class MMDatabase{
     
-    static var isTrace: Bool = false//标识是否已经监控错误信息
+    static private var isTrace: Bool = false//标识是否已经监控错误信息
     
     /// 取DB
     /// - Parameter type: 遵守了TableDecodable协议的类型
     /// - Returns: Database
-    static func database(with type: any TableDecodable.Type) -> Database {
+    public static func database(with type: any TableDecodable.Type) -> Database {
         //全局监控
         if !isTrace {
             Database.globalTraceError { error in

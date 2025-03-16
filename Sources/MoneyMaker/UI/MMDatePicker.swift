@@ -9,7 +9,7 @@ import UIKit
 
 public class MMDatePicker: UIDatePicker {
 
-    init(_ attributes: Attribute...){
+    public init(_ attributes: Attribute...){
         super.init(frame: .zero)
         for attribute in attributes {
             self.addAttribute(attribute)
@@ -20,14 +20,14 @@ public class MMDatePicker: UIDatePicker {
         fatalError("init(coder:) has not been implemented")
     }
     
-    enum Attribute {
+    public enum Attribute {
         case minimumDate(Date)
         case maximumDate(Date)
         case date(Date)
         case datePickerStyle(UIDatePickerStyle = .wheels)
     }
     
-    @discardableResult func addAttribute(_ attribute: Attribute) -> MMDatePicker {
+    @discardableResult private func addAttribute(_ attribute: Attribute) -> MMDatePicker {
         switch attribute {
         case.date(let date):
             self.date = date

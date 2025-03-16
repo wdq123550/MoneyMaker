@@ -9,14 +9,14 @@ import UIKit
 
 public class MMButton: UIButton {
     
-    enum State {
+    public enum State {
         case normal
         case highlighted
         case disable
         case selected
     }
     
-    struct ButtonItem {
+    public struct ButtonItem {
         var font: UIFont?
         var title: String?
         var titleColor: UIColor?
@@ -27,7 +27,7 @@ public class MMButton: UIButton {
         var state: State
     }
     
-    enum Attribute {
+    public enum Attribute {
         case buttonItem(ButtonItem)
         case layerSet(LayerSet)
         case isUserInteractionEnabled(Bool)
@@ -38,23 +38,11 @@ public class MMButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(_ attributes: Attribute...) {
+    public init(_ attributes: Attribute...) {
         super.init(frame: .zero)
         
         for attribute in attributes {
-            switch attribute {
-            case .buttonItem(let buttonItem):
-                self.buttonItems.append(buttonItem)
-            case .isDisableHighlighted(let isDisableHighlighted):
-                self.isDisableHighlighted = isDisableHighlighted
-            case .isUserInteractionEnabled(let isUserInteractionEnabled):
-                self.isUserInteractionEnabled = isUserInteractionEnabled
-            case .layerSet(let layerSet):
-                self.layer.cornerRadius = layerSet.cornerRadius ?? 0
-                self.layer.borderWidth = layerSet.borderWidth ?? 0
-                self.layer.borderColor = layerSet.borderColor?.cgColor
-                self.clipsToBounds = true
-            }
+            self.addAttribute(attribute)
         }
         
         let normalButtonItem = self.buttonItems.filter {
@@ -64,12 +52,29 @@ public class MMButton: UIButton {
         self.applyButtonItem(buttonItem: normalButtonItem.first!)
     }
     
+    @discardableResult private func addAttribute(_ attribute: Attribute) -> MMButton {
+        switch attribute {
+        case .buttonItem(let buttonItem):
+            self.buttonItems.append(buttonItem)
+        case .isDisableHighlighted(let isDisableHighlighted):
+            self.isDisableHighlighted = isDisableHighlighted
+        case .isUserInteractionEnabled(let isUserInteractionEnabled):
+            self.isUserInteractionEnabled = isUserInteractionEnabled
+        case .layerSet(let layerSet):
+            self.layer.cornerRadius = layerSet.cornerRadius ?? 0
+            self.layer.borderWidth = layerSet.borderWidth ?? 0
+            self.layer.borderColor = layerSet.borderColor?.cgColor
+            self.clipsToBounds = true
+        }
+        return self
+    }
+    
     public override var isHighlighted: Bool {
         get { return self.isDisableHighlighted }
         set { /* 空实现，阻止高亮状态设置 */ }
     }
     
-    var ccState: State = .normal {
+    public var ccState: State = .normal {
         didSet {
             for buttonItem in buttonItems {
                 if buttonItem.state == ccState {

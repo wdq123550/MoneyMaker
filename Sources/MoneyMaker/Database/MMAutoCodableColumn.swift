@@ -10,7 +10,7 @@ import WCDBSwift
 
 public protocol MMAutoCodableColumn: TableCodable, ColumnCodable, Equatable {}
 
-extension MMAutoCodableColumn {
+public extension MMAutoCodableColumn {
     static var columnType: ColumnType {
         return .text
     }
