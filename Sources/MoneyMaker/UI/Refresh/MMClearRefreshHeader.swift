@@ -6,6 +6,7 @@
 //  非常干净的取消了各种提示的下拉加载控件，如果需要原本的信息，请子类化此类进行设置
 
 import UIKit
+import MJRefresh
 
 class MMClearRefreshHeader: MJRefreshNormalHeader {
 
