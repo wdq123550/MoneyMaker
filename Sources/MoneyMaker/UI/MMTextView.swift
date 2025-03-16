@@ -7,7 +7,7 @@
 import UIKit
 import RSKGrowingTextView
 
-class MMTextView: RSKGrowingTextView {
+public class MMTextView: RSKGrowingTextView {
     
     enum Attribute {
         case font(UIFont)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MMDatePicker: UIDatePicker {
+public class MMDatePicker: UIDatePicker {
 
     init(_ attributes: Attribute...){
         super.init(frame: .zero)

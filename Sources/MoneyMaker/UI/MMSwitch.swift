@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MMSwitch: UISwitch {
+public class MMSwitch: UISwitch {
     
     init(_ attributes: Attribute...){
         super.init(frame: .zero)

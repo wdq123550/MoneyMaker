@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class MMView: UIView{
+public class MMView: UIView{
     
     var cancellables = Set<AnyCancellable>()
     

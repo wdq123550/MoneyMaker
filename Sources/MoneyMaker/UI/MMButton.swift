@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MMButton: UIButton {
+public class MMButton: UIButton {
     
     enum State {
         case normal
@@ -64,7 +64,7 @@ class MMButton: UIButton {
         self.applyButtonItem(buttonItem: normalButtonItem.first!)
     }
     
-    override var isHighlighted: Bool {
+    public override var isHighlighted: Bool {
         get { return self.isDisableHighlighted }
         set { /* 空实现，阻止高亮状态设置 */ }
     }

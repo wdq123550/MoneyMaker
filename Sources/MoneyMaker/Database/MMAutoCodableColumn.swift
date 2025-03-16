@@ -8,7 +8,7 @@
 import Foundation
 import WCDBSwift
 
-protocol MMAutoCodableColumn: TableCodable, ColumnCodable, Equatable {}
+public protocol MMAutoCodableColumn: TableCodable, ColumnCodable, Equatable {}
 
 extension MMAutoCodableColumn {
     static var columnType: ColumnType {

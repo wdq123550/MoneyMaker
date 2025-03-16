@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MMImageView: UIImageView {
+public class MMImageView: UIImageView {
 
     init(_ attributes: Attribute...){
         super.init(frame: .zero)

@@ -8,7 +8,7 @@
 import Foundation
 import WCDBSwift
 
-final class MMDatabase{
+public final class MMDatabase{
     
     static var isTrace: Bool = false//标识是否已经监控错误信息
     

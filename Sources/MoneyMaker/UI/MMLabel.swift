@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MMLabel: UILabel {
+public class MMLabel: UILabel {
     
     
     init(_ attributes: Attribute...){

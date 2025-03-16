@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class MMCTextField: UITextField {
+public class MMCTextField: UITextField {
     
     enum Attribute {
         case font(UIFont)

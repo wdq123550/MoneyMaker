@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MMFullScreenBackNavigationVC: UINavigationController, UIGestureRecognizerDelegate {
+public class MMFullScreenBackNavigationVC: UINavigationController, UIGestureRecognizerDelegate {
     
     private let backImage: UIImage
     
@@ -21,7 +21,7 @@ class MMFullScreenBackNavigationVC: UINavigationController, UIGestureRecognizerD
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         let panGes = UIPanGestureRecognizer(target: self.interactivePopGestureRecognizer?.delegate, action: Selector(("handleNavigationTransition:")))
@@ -31,7 +31,7 @@ class MMFullScreenBackNavigationVC: UINavigationController, UIGestureRecognizerD
         
     }
 
-    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+    public override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if self.children.count == 1 {
             viewController.hidesBottomBarWhenPushed = true
         }
@@ -46,7 +46,7 @@ class MMFullScreenBackNavigationVC: UINavigationController, UIGestureRecognizerD
     }
     
     //MARK: - UIGestureRecognizerDelegate
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         
         if self.children.count == 1 {//只有一个子控制器，不返回
             return false

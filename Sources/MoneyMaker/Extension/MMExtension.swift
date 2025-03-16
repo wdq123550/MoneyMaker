@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 //MARK: - Color
-extension UIColor {
+public extension UIColor {
     /// color to image
     /// - Returns: UIImage
     func asImage() -> UIImage {
@@ -27,7 +27,7 @@ extension UIColor {
 }
 
 //MARK: - UIView
-extension UIView {
+public extension UIView {
     
     //圆角设置集合
     struct LayerSet {
@@ -89,7 +89,7 @@ extension UIView {
 }
 
 //MARK: - String
-extension String {
+public extension String {
     /// 计算字符串的宽高
     /// - Parameters:
     ///   - font: 字符串使用的字体

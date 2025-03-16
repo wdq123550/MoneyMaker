@@ -8,11 +8,11 @@
 import UIKit
 import Combine
 
-class MMVC: UIViewController {
+public class MMVC: UIViewController {
     
     var cancellables = Set<AnyCancellable>()
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
     }

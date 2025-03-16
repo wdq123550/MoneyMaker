@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MMScrollView: UIScrollView {
+public class MMScrollView: UIScrollView {
     
     init(_ attributes: Attribute...){
         super.init(frame: .zero)
