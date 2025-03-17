@@ -52,7 +52,6 @@ open class MMButton: UIButton {
         set { /* 空实现，阻止高亮状态设置 */ }
     }
     
-    
     public override var state: UIControl.State{
         get{
             self._state
@@ -108,8 +107,6 @@ open class MMButton: UIButton {
         }
         self.configuration = config
     }
-    
-    
     
 }
 

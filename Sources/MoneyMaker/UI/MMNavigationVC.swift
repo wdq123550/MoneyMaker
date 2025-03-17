@@ -40,31 +40,19 @@ open class MMFullScreenBackNavigationVC: UINavigationController, UIGestureRecogn
     
     //MARK: - UIGestureRecognizerDelegate
     open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        
-        if self.children.count == 1 {//只有一个子控制器，不返回
-            return false
-        }
-        if self.value(forKey: "_isTransitioning") as! Bool {//控制器正在返回中，不返回
-            return false
-        }
-        if (gestureRecognizer as! UIPanGestureRecognizer).translation(in: gestureRecognizer.view).x <= 0 {//不是右滑返回
-            return false
-        }
-        
+        if self.children.count == 1 { return false }//只有一个子控制器，不返回
+        if self.value(forKey: "_isTransitioning") as! Bool { return false }//控制器正在返回中，不返回
+        if (gestureRecognizer as! UIPanGestureRecognizer).translation(in: gestureRecognizer.view).x <= 0 { return false }//不是右滑返回
         return true
     }
     
     //MARK: - public
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
     //MARK: - private
     private let backImage: UIImage?
-    @objc private func back() {
-        self.popViewController(animated: true)
-    }
+    @objc private func back() { self.popViewController(animated: true) }
     
 }
 
