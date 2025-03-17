@@ -26,7 +26,6 @@ internal class MMTableListProxy: NSObject, UITableViewDelegate, UITableViewDataS
         }
         return super.responds(to: aSelector)
     }
-    
     internal override func forwardingTarget(for aSelector: Selector!) -> Any? {
         extensionTarget
     }
@@ -75,6 +74,7 @@ internal class MMTableListProxy: NSObject, UITableViewDelegate, UITableViewDataS
         }
         return viewModel.cellType.cellHeight(with: viewModel, indexPath: indexPath)
     }
+    
     internal func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         keyWindow.endEditing(true)
         if self.extensionTarget.responds(to: #selector(UIScrollViewDelegate.scrollViewWillBeginDragging(_:))){

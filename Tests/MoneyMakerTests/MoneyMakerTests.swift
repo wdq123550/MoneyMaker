@@ -4,6 +4,7 @@ import Testing
 @Test func example() async throws {
     // Write your test here and use APIs like `#expect(...)` to check expected conditions.
     
+    
 }
 
 
@@ -25,3 +26,18 @@ import Testing
 //    }
 //    return label
 //}()
+
+//func databaseTest() {
+//    let dbFileURL = preferencesDirectory?.appendingPathComponent("mmdbv.db", conformingTo: .database)
+//    print(dbFileURL!)
+//    let password = "password".data(using: .ascii)
+//    
+//    await MMDatabase.setupDatabase(databaseFileURL: dbFileURL!, databasePassword: password, isTrace: true)
+//    
+//    let model = MMDatabaseSmaple(phone: "123")
+//    let result = model.insert()
+//    print(result)
+//    
+//    print(MMDatabaseSmaple.delete())
+//    print("gg")
+//}

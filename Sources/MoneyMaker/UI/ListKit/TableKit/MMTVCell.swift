@@ -1,5 +1,5 @@
 //
-//  MMTableViewCell.swift
+//  MMTVCell.swift
 //  MoneyMaker
 //
 //  Created by 小君夜麻吕 on 2025/3/17.
@@ -27,7 +27,7 @@ open class MMTVCell: UITableViewCell, MMTVCellProtocol {
         let tapGes = UITapGestureRecognizer()
         self.contentView.addGestureRecognizer(tapGes)
         tapGes.reactive.stateChanged.take(duringLifetimeOf: self).observeValues { [unowned self] tapGes in
-            self.onclickContentView()
+            self.onClickContentView()
         }
     }
     required public init?(coder: NSCoder) {
@@ -43,7 +43,7 @@ open class MMTVCell: UITableViewCell, MMTVCellProtocol {
         cellVM.indexPath = indexPath
         return cellVM.cellHeight ?? 0
     }
-    open func onclickContentView() {}
+    open func onClickContentView() {}
     
     //MARK: - public
     public var _viewModel: MMTVCellVM?
