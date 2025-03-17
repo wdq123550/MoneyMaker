@@ -7,9 +7,9 @@
 
 import UIKit
 
-public class MMLabel: UILabel {
+open class MMLabel: UILabel {
     
-    
+    //MARK: - init
     public init(_ attributes: Attribute...){
         super.init(frame: .zero)
         for attribute in attributes {
@@ -17,7 +17,8 @@ public class MMLabel: UILabel {
         }
     }
     
-    required init?(coder: NSCoder) {
+    //MARK: - public
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -33,6 +34,7 @@ public class MMLabel: UILabel {
         case attributeText(NSAttributedString)
     }
     
+    //MARK: - private
     @discardableResult private func addAttribute(_ attribute: Attribute) -> MMLabel {
         switch attribute {
         case.text(let text):

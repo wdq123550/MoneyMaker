@@ -5,14 +5,11 @@
 //  Created by 小君夜麻吕 on 2025/3/16.
 //
 
-import Foundation
-import UIKit
-
 //MARK: - Color
-public extension UIColor {
+extension UIColor {
     /// color to image
     /// - Returns: UIImage
-    func asImage() -> UIImage {
+    public func asImage() -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
         guard let context = UIGraphicsGetCurrentContext() else {
@@ -27,10 +24,10 @@ public extension UIColor {
 }
 
 //MARK: - UIView
-public extension UIView {
+extension UIView {
     
     //圆角设置集合
-    struct LayerSet {
+    public struct LayerSet {
         public var cornerRadius: CGFloat?
         public var borderWidth: CGFloat?
         public var borderColor: UIColor?
@@ -43,7 +40,7 @@ public extension UIView {
     }
     
     /// 渐变方向
-    enum GradientDirection {
+    public enum GradientDirection {
         case topToBottom       // 从上到下
         case bottomToTop       // 从下到上
         case leftToRight       // 从左到右
@@ -54,7 +51,7 @@ public extension UIView {
     /// - Parameters:
     ///   - colors: 渐变的颜色数组
     ///   - direction: 渐变方向，默认为从上到下
-    func setGradientBackground(colors: [UIColor], direction: GradientDirection) {
+    public func setGradientBackground(colors: [UIColor], direction: GradientDirection) {
         
         //计算宽高
         self.setNeedsLayout()
@@ -95,13 +92,13 @@ public extension UIView {
 }
 
 //MARK: - String
-public extension String {
+extension String {
     /// 计算字符串的宽高
     /// - Parameters:
     ///   - font: 字符串使用的字体
     ///   - maxSize: 限制的最大尺寸（宽和高）
     /// - Returns: 文本绘制的实际尺寸
-    func boundingSize(with font: UIFont, maxSize: CGSize) -> CGSize {
+    public func boundingSize(with font: UIFont, maxSize: CGSize) -> CGSize {
         let attributes: [NSAttributedString.Key: Any] = [.font: font]
         let rect = self.boundingRect(
             with: maxSize,

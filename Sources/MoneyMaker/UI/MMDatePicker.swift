@@ -7,8 +7,9 @@
 
 import UIKit
 
-public class MMDatePicker: UIDatePicker {
+open class MMDatePicker: UIDatePicker {
 
+    //MARK: - init
     public init(_ attributes: Attribute...){
         super.init(frame: .zero)
         for attribute in attributes {
@@ -16,7 +17,8 @@ public class MMDatePicker: UIDatePicker {
         }
     }
     
-    required init?(coder: NSCoder) {
+    //MARK: - public
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -27,6 +29,8 @@ public class MMDatePicker: UIDatePicker {
         case datePickerStyle(UIDatePickerStyle = .wheels)
     }
     
+    
+    //MARK: - private
     @discardableResult private func addAttribute(_ attribute: Attribute) -> MMDatePicker {
         switch attribute {
         case.date(let date):

@@ -7,8 +7,9 @@
 
 import UIKit
 
-public class MMScrollView: UIScrollView {
+open class MMScrollView: UIScrollView {
     
+    //MARK: - init
     public init(_ attributes: Attribute...){
         super.init(frame: .zero)
         for attribute in attributes {
@@ -16,7 +17,8 @@ public class MMScrollView: UIScrollView {
         }
     }
     
-    required init?(coder: NSCoder) {
+    //MARK: - public
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -30,6 +32,7 @@ public class MMScrollView: UIScrollView {
         case layerSet(LayerSet)
     }
     
+    //MARK: - private
     @discardableResult private func addAttribute(_ attribute: Attribute) -> MMScrollView {
         switch attribute {
         case.contentSize(let contentSize):

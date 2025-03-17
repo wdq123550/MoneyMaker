@@ -5,8 +5,6 @@
 //  Created by 小君夜麻吕 on 2025/3/16.
 //  这是一个例子，可供参考
 
-import Foundation
-
 /*
 //sub model
 struct MMPianoModel: MMAutoCodableColumn {

@@ -7,8 +7,9 @@
 
 import UIKit
 
-public class MMSwitch: UISwitch {
+open class MMSwitch: UISwitch {
     
+    //MARK: - init
     public init(_ attributes: Attribute...){
         super.init(frame: .zero)
         for attribute in attributes {
@@ -16,7 +17,8 @@ public class MMSwitch: UISwitch {
         }
     }
     
-    required init?(coder: NSCoder) {
+    //MARK: - public
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -27,6 +29,7 @@ public class MMSwitch: UISwitch {
         case offImage(UIImage)
     }
     
+    //MARK: - private
     @discardableResult private func addAttribute(_ attribute: Attribute) -> MMSwitch {
         switch attribute {
         case.onTintColor(let onTintColor):

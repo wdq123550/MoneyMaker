@@ -7,8 +7,17 @@
 import UIKit
 import RSKGrowingTextView
 
-public class MMTextView: RSKGrowingTextView {
+open class MMTextView: RSKGrowingTextView {
     
+    //MARK: - init
+    public init(_ attributes: Attribute...){
+        super.init(frame: .zero, textContainer: nil)
+        for attribute in attributes {
+            self.addAttribute(attribute)
+        }
+    }
+    
+    //MARK: - public
     public enum Attribute {
         case font(UIFont)
         case text(String)
@@ -22,19 +31,11 @@ public class MMTextView: RSKGrowingTextView {
         case linkTapGestureRecognizer(NSAttributedString, linkColor: UIColor, (URL) -> Void)
     }
     
-    public static var deleteImage: UIImage = UIImage(named: "textFieldDelete")!
-    
-    public init(_ attributes: Attribute...){
-        super.init(frame: .zero, textContainer: nil)
-        for attribute in attributes {
-            self.addAttribute(attribute)
-        }
-    }
-    
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - private
     @discardableResult private func addAttribute(_ attribute: Attribute) -> MMTextView {
         switch attribute {
         case.text(let text):

@@ -8,8 +8,22 @@
 import UIKit
 import Combine
 
-public class MMView: UIView{
+open class MMView: UIView{
     
+    
+    //MARK: - init
+    public init(_ attributes: Attribute...){
+        super.init(frame: .zero)
+        for attribute in attributes {
+            self.addAttribute(attribute)
+        }
+    }
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    
+    //MARK: - public
     public var cancellables = Set<AnyCancellable>()
     
     public enum Attribute {
@@ -17,21 +31,12 @@ public class MMView: UIView{
         case layerSet(LayerSet)
     }
     
-    public init(_ attributes: Attribute...){
-        super.init(frame: .zero)
-        for attribute in attributes {
-            self.addAttribute(attribute)
-        }
-    }
-    
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    //MARK: - private
     @discardableResult private func addAttribute(_ attribute: Attribute) -> MMView {
         switch attribute {
         case .bgColor(let bgColor):

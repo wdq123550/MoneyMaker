@@ -6,8 +6,18 @@
 //
 import UIKit
 
-public class MMCTextField: UITextField {
+open class MMTextField: UITextField {
     
+    //MARK: - init
+    public init(_ attributes: Attribute...){
+        super.init(frame: .zero)
+        for attribute in attributes {
+            self.addAttribute(attribute)
+        }
+        self.addAutoRightDeleteIcon()
+    }
+    
+    //MARK: - public
     public enum Attribute {
         case font(UIFont)
         case text(String)
@@ -22,44 +32,18 @@ public class MMCTextField: UITextField {
         case rightView(MMView)
         case rightViewMode(UITextField.ViewMode)
         case layerSet(LayerSet)
-        case defaultTextFieldDeleteImage(UIImage)
-        case defaultRightViewMargin(CGFloat)
+        case autoRightDelete(UIImage, CGFloat = 10.0)
     }
-    
-    private var defaultTextFieldDeleteImage: UIImage?
-    private var defaultRightViewMargin: CGFloat = 10.0
-    
-    public init(_ attributes: Attribute...){
-        super.init(frame: .zero)
-        for attribute in attributes {
-            self.addAttribute(attribute)
-        }
-        if let defaultTextFieldDeleteImage = self.defaultTextFieldDeleteImage, self.rightView == nil {
-            let width = defaultTextFieldDeleteImage.size.width
-            let height = defaultTextFieldDeleteImage.size.height
-            let widthSpacing = 10.0
-            let rightView = MMView(frame: .init(x: 0, y: 0, width: width + widthSpacing * 2, height: height))
-            self.rightView = rightView
-            self.rightViewMode = .whileEditing
-            let btn = MMButton(
-                .buttonItem(.init(image: defaultTextFieldDeleteImage, state: .normal))
-            )
-            rightView.addSubview(btn)
-            btn.frame = .init(x: widthSpacing, y: 0, width: btn.currentImage?.size.width ?? 0, height: btn.currentImage?.size.height ?? 0)
-            btn.addAction(UIAction(handler: { [unowned self] _ in
-                self.text = ""
-            }), for: .touchUpInside)
-            self.reactive.continuousTextValues.take(duringLifetimeOf: self).observeValues { [unowned self] text in
-                self.rightViewMode = text.count > 0 ? .whileEditing : .never
-            }
-        }
-    }
-    
-    required init?(coder: NSCoder) {
+
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @discardableResult private func addAttribute(_ attribute: Attribute) -> MMCTextField {
+    
+    //MARK: - private
+    private var autoRightDeleteImage: UIImage?
+    private var rightViewStepMargin: CGFloat = 10.0
+    @discardableResult private func addAttribute(_ attribute: Attribute) -> MMTextField {
         switch attribute {
         case.text(let text):
             self.text = text
@@ -90,13 +74,33 @@ public class MMCTextField: UITextField {
             self.leftViewMode = leftViewMode
         case.rightViewMode(let rightViewMode):
             self.rightViewMode = rightViewMode
-        case .defaultTextFieldDeleteImage(let defaultTextFieldDeleteImage):
-            self.defaultTextFieldDeleteImage = defaultTextFieldDeleteImage
-        case .defaultRightViewMargin(let defaultRightViewMargin):
-            self.defaultRightViewMargin = defaultRightViewMargin
+        case .autoRightDelete(let rightDeleteImage, let rightViewStepMargin):
+            self.autoRightDeleteImage = rightDeleteImage
+            self.rightViewStepMargin = rightViewStepMargin
+            break
         }
         return self
     }
     
+    private func addAutoRightDeleteIcon() {
+        if let autoRightDeleteImage = self.autoRightDeleteImage, self.rightView == nil {
+            let width = autoRightDeleteImage.size.width
+            let height = autoRightDeleteImage.size.height
+            let rightView = MMView(frame: .init(x: 0, y: 0, width: width + self.rightViewStepMargin * 2, height: height))
+            self.rightView = rightView
+            self.rightViewMode = .whileEditing
+            let btn = MMButton(
+                .buttonItem(.init(image: autoRightDeleteImage, state: .normal))
+            )
+            rightView.addSubview(btn)
+            btn.frame = .init(x: self.rightViewStepMargin, y: 0, width: btn.currentImage?.size.width ?? 0, height: btn.currentImage?.size.height ?? 0)
+            btn.addAction(UIAction(handler: { [unowned self] _ in
+                self.text = ""
+            }), for: .touchUpInside)
+            self.reactive.continuousTextValues.take(duringLifetimeOf: self).observeValues { [unowned self] text in
+                self.rightViewMode = text.count > 0 ? .whileEditing : .never
+            }
+        }
+    }
 }
 

@@ -7,37 +7,9 @@
 
 import UIKit
 
-public class MMButton: UIButton {
+open class MMButton: UIButton {
     
-    public enum State {
-        case normal
-        case highlighted
-        case disable
-        case selected
-    }
-    
-    public struct ButtonItem {
-        var font: UIFont?
-        var title: String?
-        var titleColor: UIColor?
-        var image: UIImage?
-        var imagePosition: NSDirectionalRectEdge?
-        var spacing: CGFloat?
-        var bgColor: UIColor?
-        var state: State
-    }
-    
-    public enum Attribute {
-        case buttonItem(ButtonItem)
-        case layerSet(LayerSet)
-        case isUserInteractionEnabled(Bool)
-        case isDisableHighlighted(Bool = true)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    //MARK: - 构造方法
     public init(_ attributes: Attribute...) {
         super.init(frame: .zero)
         
@@ -50,6 +22,57 @@ public class MMButton: UIButton {
         }
         
         self.applyButtonItem(buttonItem: normalButtonItem.first!)
+    }
+    
+    //MARK: - public
+    public struct ButtonItem {
+        var font: UIFont?
+        var title: String?
+        var titleColor: UIColor?
+        var image: UIImage?
+        var imagePosition: NSDirectionalRectEdge?
+        var spacing: CGFloat?
+        var bgColor: UIColor?
+        var state: UIControl.State
+    }
+    
+    public enum Attribute {
+        case buttonItem(ButtonItem)
+        case layerSet(LayerSet)
+        case isUserInteractionEnabled(Bool)
+        case isDisableHighlighted(Bool = true)
+    }
+    
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public override var isHighlighted: Bool {
+        get { return self.isDisableHighlighted }
+        set { /* 空实现，阻止高亮状态设置 */ }
+    }
+    
+    
+    public override var state: UIControl.State{
+        get{
+            self._state
+        }
+        set {
+            _state = newValue
+        }
+    }
+    
+    //MARK: - private
+    private var buttonItems = [ButtonItem]()
+    private var isDisableHighlighted = true
+    private var _state: UIControl.State = .normal{
+        didSet{
+            for buttonItem in buttonItems {
+                if buttonItem.state == _state {
+                    self.applyButtonItem(buttonItem: buttonItem)
+                }
+            }
+        }
     }
     
     @discardableResult private func addAttribute(_ attribute: Attribute) -> MMButton {
@@ -69,25 +92,6 @@ public class MMButton: UIButton {
         return self
     }
     
-    public override var isHighlighted: Bool {
-        get { return self.isDisableHighlighted }
-        set { /* 空实现，阻止高亮状态设置 */ }
-    }
-    
-    public var ccState: State = .normal {
-        didSet {
-            for buttonItem in buttonItems {
-                if buttonItem.state == ccState {
-                    self.applyButtonItem(buttonItem: buttonItem)
-                }
-            }
-        }
-    }
-    
-    //MARK: - private
-    private var buttonItems = [ButtonItem]()
-    private var isDisableHighlighted = true
-    
     private func applyButtonItem(buttonItem: ButtonItem) {
         var config = UIButton.Configuration.plain()
         config.contentInsets = .zero
@@ -104,6 +108,7 @@ public class MMButton: UIButton {
         }
         self.configuration = config
     }
+    
     
     
 }

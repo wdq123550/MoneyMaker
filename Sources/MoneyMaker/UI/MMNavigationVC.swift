@@ -7,21 +7,18 @@
 
 import UIKit
 
-public class MMFullScreenBackNavigationVC: UINavigationController, UIGestureRecognizerDelegate {
+open class MMFullScreenBackNavigationVC: UINavigationController, UIGestureRecognizerDelegate {
     
-    private let backImage: UIImage
     
+    //MARK: - init
     //子类必须重写此方法
-    public required init(rootViewController: UIViewController, backImage: UIImage) {
+    public required init(rootViewController: UIViewController, backImage: UIImage?) {
         self.backImage = backImage
         super.init(rootViewController: rootViewController)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    public override func viewDidLoad() {
+    //MARK: - open
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         let panGes = UIPanGestureRecognizer(target: self.interactivePopGestureRecognizer?.delegate, action: Selector(("handleNavigationTransition:")))
@@ -31,22 +28,18 @@ public class MMFullScreenBackNavigationVC: UINavigationController, UIGestureReco
         
     }
 
-    public override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+    open override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if self.children.count == 1 {
             viewController.hidesBottomBarWhenPushed = true
         }
         super.pushViewController(viewController, animated: animated)
-        if self.children.count > 1 {
-            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: self.backImage.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.back))
+        if let backImage = self.backImage, self.children.count > 1{
+            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: backImage.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.back))
         }
     }
     
-    @objc private func back() {
-        self.popViewController(animated: true)
-    }
-    
     //MARK: - UIGestureRecognizerDelegate
-    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         
         if self.children.count == 1 {//只有一个子控制器，不返回
             return false
@@ -61,6 +54,17 @@ public class MMFullScreenBackNavigationVC: UINavigationController, UIGestureReco
         return true
     }
     
+    //MARK: - public
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    //MARK: - private
+    private let backImage: UIImage?
+    @objc private func back() {
+        self.popViewController(animated: true)
+    }
     
 }
 

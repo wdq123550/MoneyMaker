@@ -5,9 +5,6 @@
 //  Created by 小君夜麻吕 on 2025/3/16.
 //
 
-import Foundation
-import WCDBSwift
-
 public final class MMDatabase{
     
     static private var isTrace: Bool = false//标识是否已经监控错误信息

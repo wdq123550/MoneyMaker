@@ -7,11 +7,4 @@
 
 import UIKit
 
-public class MMTabBarVC: UITabBarController {
-
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-
-        
-    }
-}
+open class MMTabBarVC: UITabBarController {}
