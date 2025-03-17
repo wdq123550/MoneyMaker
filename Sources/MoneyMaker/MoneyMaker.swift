@@ -18,3 +18,4 @@
 @_exported import IQKeyboardManagerSwift
 @_exported import ReactiveSwift
 @_exported import ReactiveCocoa
+@_exported import Combine
